@@ -34,4 +34,8 @@ public interface IGrid {
     int getBarbieHealth();
 
     Barbie getBarbie();
+
+    int getNumberOfZombies();
+
+    int getNumberOfWalls();
 }

@@ -274,4 +274,23 @@ public class Grid implements IGrid {
         return barbie;
     }
 
+    /**
+     * Accessor for the number of walls on the grid.
+     * @return number of walls.
+     */
+    @Override
+    public int getNumberOfWalls() {
+        return numberOfWalls;
+    }
+
+    /**
+     * Accessor for the number of zombies on the grid.
+     * @return number of zombies on the grid.
+     */
+    @Override
+    public int getNumberOfZombies() {
+        return numberOfZombies;
+    }
+
+
 }
