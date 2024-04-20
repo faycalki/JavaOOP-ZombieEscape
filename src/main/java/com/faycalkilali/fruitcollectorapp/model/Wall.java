@@ -5,7 +5,7 @@ package com.faycalkilali.fruitcollectorapp.model;
  * @author Faycal Kilali
  * @version 1.0
  */
-public class Wall {
+public class Wall implements Entity {
 
     /**
      * Communicates Wall in textual form

@@ -5,9 +5,7 @@ package com.faycalkilali.fruitcollectorapp.model;
  * @author Faycal Kilali
  * @version 1.0
  */
-public class Person {
-
-
+abstract public class Person implements Entity {
     public int health;
 
     public Person(){
@@ -28,5 +26,10 @@ public class Person {
      */
     public void setHealth(int health) {
         this.health = health;
+    }
+
+    @Override
+    public String toString() {
+        return "\u001B[36mP\u001B[0m";
     }
 }

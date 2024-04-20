@@ -1,8 +1,8 @@
 package com.faycalkilali.fruitcollectorapp.view;
 
 public interface Viewable {
-    public void render();
+    void display();
 
-    public void inputFromController(String input);
+    void inputFromController(String input);
 
 }

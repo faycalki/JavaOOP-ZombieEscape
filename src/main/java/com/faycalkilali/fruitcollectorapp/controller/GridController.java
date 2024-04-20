@@ -1,27 +1,52 @@
 package com.faycalkilali.fruitcollectorapp.controller;
 
+import com.faycalkilali.fruitcollectorapp.model.Entity;
+import com.faycalkilali.fruitcollectorapp.model.IGrid;
+
+import com.faycalkilali.fruitcollectorapp.view.GridView;
+import com.faycalkilali.fruitcollectorapp.view.Viewable;
+
+
 public class GridController implements IGridController {
 
     private IGrid grid;
-    private Viewable gridView;
+    private final Viewable gridView;
 
     public GridController(){
-        grid = new Grid();
-        gridView = new GridView(0);
+        gridView = new GridView();
     }
-
 
     /**
-     * Requests textual representation of the grid from the modelInformation.
-     * @return textual representation of the grid
+     * Prepares the Grid and its contents for the View.
      */
     @Override
-    public String getGrid(){
-        return grid.toString();
+    public void parseGrid(){
+        StringBuilder result = new StringBuilder();
+
+        for (int row = 0; row < grid.getNumberOfRows(); row++) {
+            for (int column = 0; column < grid.getNumberOfColumns(); column++) {
+                Entity cell = grid.getGrid()[row][column];
+                if (cell == null) {
+                    result.append("\u001B[37mX\u001B[0m\t");
+                } else {
+                    result.append(cell.toString()).append("\t");
+                }
+            }
+            result.append("\n");
+        }
+
+        gridView.inputFromController(result.toString());
     }
 
-    public Viewable getGridView() {
-        return GridView;
+    @Override
+    public Viewable getView() {
+        return gridView;
     }
+
+    @Override
+    public void setGrid(IGrid grid) {
+        this.grid = grid;
+    }
+
 
 }

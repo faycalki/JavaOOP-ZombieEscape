@@ -1,4 +1,6 @@
 package com.faycalkilali.fruitcollectorapp.model;
 
-public interface IModelInformation {
+public interface Entity {
+
+    String toString();
 }

@@ -1,11 +1,11 @@
 package com.faycalkilali.fruitcollectorapp.model;
 
 /**
- * Representation of a Zombie Object
+ * Representation of a Zombie Entity
  * @author Faycal Kilali
  * @version 1.0
  */
-public class Zombie extends Person{
+public class Zombie implements Entity{
 
 
 

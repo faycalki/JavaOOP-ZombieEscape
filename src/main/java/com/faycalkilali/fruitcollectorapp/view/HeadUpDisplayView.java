@@ -5,32 +5,24 @@ public class HeadUpDisplayView implements Viewable {
 
 
     @Override
-    public void render() {
+    public void display() {
         // Print instructions, HUD, etc
         System.out.println(Instructions());
-        System.out.println(headUpDisplay());
+        System.out.println(contents);
     }
 
+    /**
+     * Receives updates from Model through Controller
+     * @param input a string representing the update
+     */
     @Override
     public void inputFromController(String input) {
-
+        contents = input;
     }
 
     /**
-     * HUD for the game
-     * @return HUD as a String
-     */
-    private String headUpDisplay(){
-        int barbieHealth = controller.getHealth();
-        int fruits = controller.getFruits();
-        //return "HP: " + barbieHealth + "\n" + "Fruits remaining: " + fruits;
-        return "\u001B[32mHP: " + barbieHealth + "\nFruits remaining: " + fruits + "\u001B[0m"; // ANSI-version
-
-    }
-
-    /**
-     * Instructions on how to play
-     * @return the instructions on how to play as a String
+     * Returns the instructions on how to play.
+     * @return a String representing the instructions of how to play the game
      */
     private String Instructions() {
         return "\u001B[36mInstructions:\n" +

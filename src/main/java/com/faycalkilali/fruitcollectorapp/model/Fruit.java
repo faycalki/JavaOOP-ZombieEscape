@@ -5,7 +5,7 @@ package com.faycalkilali.fruitcollectorapp.model;
  * @author Faycal Kilali
  * @version 1.0
  */
-public class Fruit {
+public class Fruit implements Entity {
 
 
 

@@ -2,11 +2,11 @@ package com.faycalkilali.fruitcollectorapp.view;
 
 public interface IProgramView extends Viewable{
 
-    public void welcomeMessage();
+    void welcomeMessage();
 
-    public void winScreen();
+    void winScreen();
 
-    public void lostScreen();
+    void lostScreen();
 
-    public void addView(Viewable view);
+    void addView(Viewable view);
 }
