@@ -3,9 +3,9 @@
 /*
  * © 2024 Faycal Kilali. All rights reserved.
  *
- * This document, including all its contents, is the property of Faycal Kilali. It is protected by copyright law and may not be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of Faycal Kilali.
+ * This code is the property of Faycal Kilali.
  *
- * For inquiries or permission requests, please contact Faycal Kilali at contact@faycalkilali.com.
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
  */
 
 package com.faycalkilali.fruitcollectorapp;

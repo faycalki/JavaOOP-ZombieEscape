@@ -120,29 +120,10 @@ public class Grid implements IGrid {
 
         }
 
-        // Force at least one wall placement if there's no wall placed.
-        if (!wallPlaced) {
-            // Randomly find a spot to place it
-            int rowsLimit = rand.nextInt(0, numberOfRows);
-            int columnsLimit = rand.nextInt(0, numberOfColumns);
 
-            for (int row = rowsLimit; row < numberOfRows; row++) {
-                for (int column = columnsLimit; column < numberOfColumns; column++) {
-                    if (grid[row][column] == null) {
-                        grid[row][column] = new Wall();
-                        wallPlaced = true;
-                        countWalls++;
-                        break;
-                    }
-                }
-                if (wallPlaced) {
-                    break;
-                }
-            }
-        }
 
-        // If Barbie has not been placed, place her in the first available empty cell
-        if (!barbiePlaced && !wallPlaced && !zombiePlaced && !fruitPlaced) {
+        // If barbie, a wall, a zombie, or a fruit have not been placed...
+        if (!barbiePlaced || !wallPlaced || !zombiePlaced || !fruitPlaced) {
             for (int row = 0; row < numberOfRows; row++) {
                 for (int column = 0; column < numberOfColumns; column++) {
                     if (grid[row][column] == null) {
