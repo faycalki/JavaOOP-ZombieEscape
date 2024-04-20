@@ -1,9 +1,17 @@
-package com.faycalkilali.fruitcollectorapp.controller;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
 
-import com.faycalkilali.fruitcollectorapp.model.Entity;
-import com.faycalkilali.fruitcollectorapp.model.IGrid;
-import com.faycalkilali.fruitcollectorapp.view.GridView;
-import com.faycalkilali.fruitcollectorapp.view.Viewable;
+package com.faycalkilali.fruitcollector.controller;
+
+import com.faycalkilali.fruitcollector.model.Entity;
+import com.faycalkilali.fruitcollector.model.IGrid;
+import com.faycalkilali.fruitcollector.view.GridView;
+import com.faycalkilali.fruitcollector.view.Viewable;
 
 /**
  * Controller for managing the grid view component in the MVC architecture.
@@ -13,8 +21,8 @@ import com.faycalkilali.fruitcollectorapp.view.Viewable;
  */
 public class GridController implements IGridController {
 
-    private IGrid grid;
     private final Viewable gridView;
+    private IGrid grid;
 
     /**
      * Constructs a new GridController object.
@@ -23,7 +31,7 @@ public class GridController implements IGridController {
      * The constructor creates a new instance of the GridView class to manage the graphical representation of the grid through the MVC architecture.
      * </p>
      */
-    public GridController(){
+    public GridController() {
         gridView = new GridView();
     }
 
@@ -31,7 +39,7 @@ public class GridController implements IGridController {
      * Prepares the Grid and its contents for the View.
      */
     @Override
-    public void parseGrid(){
+    public void parseGrid() {
         StringBuilder result = new StringBuilder();
 
         for (int row = 0; row < grid.getNumberOfRows(); row++) {
@@ -40,7 +48,7 @@ public class GridController implements IGridController {
                 if (cell == null) {
                     result.append("\u001B[37mX\u001B[0m\t");
                 } else {
-                    result.append(cell.toString()).append("\t");
+                    result.append(cell).append("\t");
                 }
             }
             result.append("\n");
@@ -51,6 +59,7 @@ public class GridController implements IGridController {
 
     /**
      * Accessor for the View component.
+     *
      * @return the Viewable object.
      */
     @Override
@@ -60,6 +69,7 @@ public class GridController implements IGridController {
 
     /**
      * Mutator for the grid.
+     *
      * @param grid to mutate to.
      */
     @Override

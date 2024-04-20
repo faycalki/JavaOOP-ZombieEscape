@@ -1,4 +1,12 @@
-package com.faycalkilali.fruitcollectorapp.view;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
+
+package com.faycalkilali.fruitcollector.view;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,21 +20,21 @@ import java.util.List;
  * Any object of this class contains a {@code Scanner} object to facilitate input operations from stdio.
  * </p>
  * <p>
- * @implNote: This class is useful for providing decoupling of user input from other views.
- * </p>
  *
  * @author Faycal Kilali
  * @version 1.0
+ * @implNote : This class is useful for providing decoupling of user input from other views.
+ * </p>
  */
-public class ProgramView implements IProgramView{
-    private String contents;
+public class ProgramView implements IProgramView {
     private final List<Viewable> list;
+    private String contents;
 
 
     /**
      * Constructor for a ProgramView object. Initializes the initial state of the object.
      */
-    public ProgramView(){
+    public ProgramView() {
         contents = "";
         list = new ArrayList<>();
     }
@@ -35,7 +43,7 @@ public class ProgramView implements IProgramView{
      * The welcoming message for the game, typically invoked at main menu.
      */
     @Override
-    public void welcomeMessage(){
+    public void welcomeMessage() {
         System.out.println("Welcome to the Main Menu! Made by Faycal Kilali." + "\n" + "Pick any of the options below." + "\n" + "1. Start game");
     }
 
@@ -44,7 +52,7 @@ public class ProgramView implements IProgramView{
      */
     @Override
     public void winScreen() {
-        System.out.println("\u001B[32m" + contents +  "Congratulations! You've consumed all of the fruits, winning this level." + "\u001B[0m");
+        System.out.println("\u001B[32m" + contents + "Congratulations! You've consumed all of the fruits, winning this level." + "\u001B[0m");
     }
 
     /**
@@ -57,6 +65,7 @@ public class ProgramView implements IProgramView{
 
     /**
      * Adds a Viewable object to the list of Viewable objects.
+     *
      * @param view the Viewable object to add to the lit.
      */
     @Override
@@ -69,7 +78,7 @@ public class ProgramView implements IProgramView{
      */
     @Override
     public void display() {
-        for (Viewable view: list){
+        for (Viewable view : list) {
             view.display();
         }
     }

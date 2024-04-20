@@ -1,8 +1,17 @@
-package com.faycalkilali.fruitcollectorapp.controller;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
 
-import com.faycalkilali.fruitcollectorapp.model.IGrid;
-import com.faycalkilali.fruitcollectorapp.view.HeadUpDisplayView;
-import com.faycalkilali.fruitcollectorapp.view.Viewable;
+package com.faycalkilali.fruitcollector.controller;
+
+import com.faycalkilali.fruitcollector.model.IGrid;
+import com.faycalkilali.fruitcollector.view.HeadUpDisplayView;
+import com.faycalkilali.fruitcollector.view.Viewable;
+
 /**
  * Controller for managing the grid HUD component in the MVC architecture.
  *
@@ -11,20 +20,20 @@ import com.faycalkilali.fruitcollectorapp.view.Viewable;
  */
 public class HeadUpDisplayController implements IHeadUpDisplayController {
 
-    private IGrid grid;
     private final Viewable headsUpDisplayView;
+    private IGrid grid;
 
     /**
      * Constructor for the class object.
      */
-    public HeadUpDisplayController(){
+    public HeadUpDisplayController() {
         headsUpDisplayView = new HeadUpDisplayView();
     }
 
     /**
      * Parses the heads-up display for the View.
      */
-    public void parseHeadsUpDisplay(){
+    public void parseHeadsUpDisplay() {
         int barbieHealth = grid.getBarbieHealth();
         int fruits = grid.getNumberOfFruits();
 
@@ -33,6 +42,7 @@ public class HeadUpDisplayController implements IHeadUpDisplayController {
 
     /**
      * Retrieves the memory address of the gridView variable and returns it
+     *
      * @return the gridView variable memory address
      */
     @Override
@@ -42,6 +52,7 @@ public class HeadUpDisplayController implements IHeadUpDisplayController {
 
     /**
      * Sets the grid.
+     *
      * @param grid the grid to set to.
      */
     public void setGrid(IGrid grid) {

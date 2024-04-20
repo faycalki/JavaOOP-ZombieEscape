@@ -1,4 +1,12 @@
-package com.faycalkilali.fruitcollectorapp.model;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
+
+package com.faycalkilali.fruitcollector.model;
 
 import java.util.Random;
 
@@ -20,22 +28,16 @@ import java.util.Random;
  * However, they all adhere to responsibilities involving the grid. Hence, further analysis may be of use to determine if it has too many responsibilities.
  */
 public class Grid implements IGrid {
+    private final Random rand = new Random();
+    private final Barbie barbie;
     private Entity[][] grid;
-
     private int numberOfFruits;
-
     private int numberOfRows;
-
     private int numberOfColumns;
-
     private int numberOfZombies;
     private int numberOfWalls;
-    private final Random rand = new Random();
-
     private int barbieRow;
     private int barbieColumn;
-
-    private final Barbie barbie;
 
     public Grid() {
         barbie = new Barbie();
@@ -121,7 +123,6 @@ public class Grid implements IGrid {
         }
 
 
-
         // If barbie, a wall, a zombie, or a fruit have not been placed...
         if (!barbiePlaced || !wallPlaced || !zombiePlaced || !fruitPlaced) {
             for (int row = 0; row < numberOfRows; row++) {
@@ -184,6 +185,16 @@ public class Grid implements IGrid {
     }
 
     /**
+     * Mutator for setting the column index of Barbie's position on the grid.
+     *
+     * @param barbieColumn The column index to set.
+     */
+    @Override
+    public void setBarbieColumn(int barbieColumn) {
+        this.barbieColumn = barbieColumn;
+    }
+
+    /**
      * Accessor for retrieving the row index of Barbie's current position on the grid.
      *
      * @return The row index of Barbie's position.
@@ -191,6 +202,16 @@ public class Grid implements IGrid {
     @Override
     public int getBarbieRow() {
         return barbieRow;
+    }
+
+    /**
+     * Mutator for setting the row index of Barbie's position on the grid.
+     *
+     * @param barbieRow The row index to set.
+     */
+    @Override
+    public void setBarbieRow(int barbieRow) {
+        this.barbieRow = barbieRow;
     }
 
     /**
@@ -211,6 +232,16 @@ public class Grid implements IGrid {
     @Override
     public int getNumberOfFruits() {
         return numberOfFruits;
+    }
+
+    /**
+     * Mutator for setting the total number of fruits on the grid.
+     *
+     * @param numberOfFruits The total number of fruits to set.
+     */
+    @Override
+    public void setNumberOfFruits(int numberOfFruits) {
+        this.numberOfFruits = numberOfFruits;
     }
 
     /**
@@ -241,36 +272,6 @@ public class Grid implements IGrid {
     @Override
     public Barbie getBarbie() {
         return barbie;
-    }
-
-    /**
-     * Mutator for setting the column index of Barbie's position on the grid.
-     *
-     * @param barbieColumn The column index to set.
-     */
-    @Override
-    public void setBarbieColumn(int barbieColumn) {
-        this.barbieColumn = barbieColumn;
-    }
-
-    /**
-     * Mutator for setting the row index of Barbie's position on the grid.
-     *
-     * @param barbieRow The row index to set.
-     */
-    @Override
-    public void setBarbieRow(int barbieRow) {
-        this.barbieRow = barbieRow;
-    }
-
-    /**
-     * Mutator for setting the total number of fruits on the grid.
-     *
-     * @param numberOfFruits The total number of fruits to set.
-     */
-    @Override
-    public void setNumberOfFruits(int numberOfFruits) {
-        this.numberOfFruits = numberOfFruits;
     }
 
 }

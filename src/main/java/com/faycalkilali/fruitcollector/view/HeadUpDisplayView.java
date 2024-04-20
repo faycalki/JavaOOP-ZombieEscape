@@ -1,4 +1,13 @@
-package com.faycalkilali.fruitcollectorapp.view;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
+
+package com.faycalkilali.fruitcollector.view;
+
 /**
  * Represents the HUD, responsible for displaying the relevant parts of the Heads-Up Display.
  *
@@ -33,6 +42,7 @@ public class HeadUpDisplayView implements Viewable {
 
     /**
      * Receives updates from Controller to update the HUD.
+     *
      * @param input a string representing the update.
      */
     @Override
@@ -42,6 +52,7 @@ public class HeadUpDisplayView implements Viewable {
 
     /**
      * Returns the instructions on how to play.
+     *
      * @return a String representing the instructions of how to play the game.
      */
     private String Instructions() {
@@ -49,7 +60,6 @@ public class HeadUpDisplayView implements Viewable {
                 "Use \u001B[33mW\u001B[36m, \u001B[33mA\u001B[36m, \u001B[33mS\u001B[36m, \u001B[33mD\u001B[36m keys to move Barbie.\n" +
                 "\u001B[0m";
     }
-
 
 
 }

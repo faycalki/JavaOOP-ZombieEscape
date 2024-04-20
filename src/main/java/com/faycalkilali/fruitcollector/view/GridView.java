@@ -1,4 +1,13 @@
-package com.faycalkilali.fruitcollectorapp.view;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
+
+package com.faycalkilali.fruitcollector.view;
+
 /**
  * Represents the grid view in the game, responsible for displaying the game map.
  *
@@ -14,7 +23,7 @@ package com.faycalkilali.fruitcollectorapp.view;
  * @author Faycal Kilali
  * @version 1.1
  */
-public class GridView implements Viewable{
+public class GridView implements Viewable {
     private String contents = "";
 
 

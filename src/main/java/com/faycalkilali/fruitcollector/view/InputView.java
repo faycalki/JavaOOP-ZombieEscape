@@ -1,4 +1,12 @@
-package com.faycalkilali.fruitcollectorapp.view;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
+
+package com.faycalkilali.fruitcollector.view;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -6,29 +14,29 @@ import java.util.Scanner;
 /**
  * Represents an input view for receiving user input in the game.
  * <p>
- *      This class implements the {@link Inputable}, hence it contains the exact behaviour of the interface.
+ * This class implements the {@link Inputable}, hence it contains the exact behaviour of the interface.
  * </p>
  * <p>
- *     This class implements the {@link Viewable} interface, therefore that exact behaviour is also part of this class.
+ * This class implements the {@link Viewable} interface, therefore that exact behaviour is also part of this class.
  * </p>
  * <p>
  * Any object of this class contains a {@code Scanner} object to facilitate input operations from stdio.
  * </p>
  * <p>
- * @implNote: This class is useful for providing decoupling of user input from other views.
- * </p>
  *
  * @author Faycal Kilali
  * @version 1.0
+ * @implNote : This class is useful for providing decoupling of user input from other views.
+ * </p>
  */
-public class InputView implements Inputable{
-    private String contents = "";
+public class InputView implements Inputable {
     private final Scanner scanner;
+    private String contents = "";
 
     /**
      * Creates a {@code InputView} object with a {@code Scanner} object that uses the stdio stream.
      */
-    public InputView(){
+    public InputView() {
         this.scanner = new Scanner(System.in);
     }
 
@@ -57,7 +65,7 @@ public class InputView implements Inputable{
      * @throws InputMismatchException If the provided user's input is not a valid integer.
      */
     @Override
-    public int inputInt(){
+    public int inputInt() {
         try {
             return scanner.nextInt();
         } catch (InputMismatchException e) {
@@ -73,7 +81,7 @@ public class InputView implements Inputable{
      * @throws InputMismatchException If the provided user's input is not a valid String.
      */
     @Override
-    public String inputString(){
+    public String inputString() {
         try {
             return scanner.nextLine();
         } catch (InputMismatchException e) {

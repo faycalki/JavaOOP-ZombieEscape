@@ -1,11 +1,19 @@
-package com.faycalkilali.fruitcollectorapp.controller;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
 
-import com.faycalkilali.fruitcollectorapp.model.IProgramFlow;
-import com.faycalkilali.fruitcollectorapp.model.ProgramFlow;
-import com.faycalkilali.fruitcollectorapp.view.IProgramView;
-import com.faycalkilali.fruitcollectorapp.view.InputView;
-import com.faycalkilali.fruitcollectorapp.view.Inputable;
-import com.faycalkilali.fruitcollectorapp.view.ProgramView;
+package com.faycalkilali.fruitcollector.controller;
+
+import com.faycalkilali.fruitcollector.model.IProgramFlow;
+import com.faycalkilali.fruitcollector.model.ProgramFlow;
+import com.faycalkilali.fruitcollector.view.IProgramView;
+import com.faycalkilali.fruitcollector.view.InputView;
+import com.faycalkilali.fruitcollector.view.Inputable;
+import com.faycalkilali.fruitcollector.view.ProgramView;
 
 /**
  * Controller for the CompositeView of the program and the program flow in general.
@@ -16,13 +24,12 @@ import com.faycalkilali.fruitcollectorapp.view.ProgramView;
  */
 
 public class ProgramController implements IProgramController {
+    private static final int START_GAME = 1;
     private final IProgramFlow programFlow;
     private final IProgramView view;
     private final IGridController gridController;
     private final IHeadUpDisplayController headUpDisplayController;
     private final Inputable input;
-
-    private static final int START_GAME = 1;
 
 
     /**
@@ -60,7 +67,7 @@ public class ProgramController implements IProgramController {
             view.welcomeMessage();
             int curValue = input.inputInt();
             if (curValue == START_GAME) {
-                if (programFlow.isGameWon()){
+                if (programFlow.isGameWon()) {
                     programFlow.swapGameWon();
                 }
                 programFlow.swapGameInProgress();

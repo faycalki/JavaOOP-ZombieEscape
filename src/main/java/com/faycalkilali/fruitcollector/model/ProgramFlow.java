@@ -1,4 +1,12 @@
-package com.faycalkilali.fruitcollectorapp.model;
+/*
+ * © 2024 Faycal Kilali. All rights reserved.
+ *
+ * This collection of code, including all its contents, is the property of Faycal Kilali.
+ *
+ * For inquiries or permission requests, please contact Faycal Kilali at root@faycalkilali.com.
+ */
+
+package com.faycalkilali.fruitcollector.model;
 
 
 /**
@@ -11,15 +19,14 @@ package com.faycalkilali.fruitcollectorapp.model;
 
 public class ProgramFlow implements IProgramFlow {
 
-    private final IGrid grid;
-    private boolean gameInProgress;
-    private boolean gameWon;
-
     private static final int GAME_OVER_HEALTH = 0;
     private static final int DAMAGE_FROM_ZOMBIE = 5;
     private static final int FRUIT_HEALTH_GAIN = 10;
     private static final double CHANCE_OF_ZOMBIE_NOT_MOVING = 0.25;
     private static int highScore = 0;
+    private final IGrid grid;
+    private boolean gameInProgress;
+    private boolean gameWon;
     private int score = 0;
 
 
@@ -36,8 +43,7 @@ public class ProgramFlow implements IProgramFlow {
     /**
      * Updates state of Zombies.
      */
-    @Override
-    public void update() {
+    private void update() {
         // Is Barbie next to some zombie? If she is, lose 5 health per adjacent zombie tile
         checkBarbieAdjacentToZombie();
 
@@ -101,10 +107,7 @@ public class ProgramFlow implements IProgramFlow {
      * @return true if it is valid to move to cell, false otherwise.
      */
     private boolean isValidCell(int row, int column) {
-        if (row < 0 || row >= grid.getNumberOfRows() || column < 0 || column >= grid.getNumberOfColumns()) {
-            return false; // Outside the grid boundaries
-        }
-        return true;
+        return row >= 0 && row < grid.getNumberOfRows() && column >= 0 && column < grid.getNumberOfColumns(); // Outside the grid boundaries
     }
 
     /**
@@ -261,8 +264,7 @@ public class ProgramFlow implements IProgramFlow {
      *
      * @return number of fruits.
      */
-    @Override
-    public int getFruits() {
+    private int getFruits() {
         return grid.getNumberOfFruits();
     }
 
