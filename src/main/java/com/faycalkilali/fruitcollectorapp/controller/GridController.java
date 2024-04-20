@@ -2,16 +2,27 @@ package com.faycalkilali.fruitcollectorapp.controller;
 
 import com.faycalkilali.fruitcollectorapp.model.Entity;
 import com.faycalkilali.fruitcollectorapp.model.IGrid;
-
 import com.faycalkilali.fruitcollectorapp.view.GridView;
 import com.faycalkilali.fruitcollectorapp.view.Viewable;
 
-
+/**
+ * Controller for managing the grid view component in the MVC architecture.
+ *
+ * @author Faycal Kilali
+ * @version 1.1
+ */
 public class GridController implements IGridController {
 
     private IGrid grid;
     private final Viewable gridView;
 
+    /**
+     * Constructs a new GridController object.
+     * <p>
+     * This constructor initializes a new instance of the GridController class.
+     * The constructor creates a new instance of the GridView class to manage the graphical representation of the grid through the MVC architecture.
+     * </p>
+     */
     public GridController(){
         gridView = new GridView();
     }
@@ -38,11 +49,19 @@ public class GridController implements IGridController {
         gridView.inputFromController(result.toString());
     }
 
+    /**
+     * Accessor for the View component.
+     * @return the Viewable object.
+     */
     @Override
     public Viewable getView() {
         return gridView;
     }
 
+    /**
+     * Mutator for the grid.
+     * @param grid to mutate to.
+     */
     @Override
     public void setGrid(IGrid grid) {
         this.grid = grid;

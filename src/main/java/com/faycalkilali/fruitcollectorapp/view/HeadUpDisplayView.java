@@ -1,9 +1,29 @@
 package com.faycalkilali.fruitcollectorapp.view;
-
+/**
+ * Represents the HUD, responsible for displaying the relevant parts of the Heads-Up Display.
+ *
+ * <p>
+ * This class implements the {@link Viewable} interface, hence it has the same defined behaviour.
+ * </p>
+ *
+ * <p>
+ * The class contains a string variable to store the contents of the HUD and methods to display
+ * the HUD contents and update them based on input from the controller.
+ * </p>
+ *
+ * @author Faycal Kilali
+ * @version 1.1
+ */
 public class HeadUpDisplayView implements Viewable {
     private String contents = "";
 
 
+    /**
+     * Displays the contents of the HUD as well as the instructions of how to play.
+     * <p>
+     * This method displays the game HUD and instructions through textual form.
+     * </p>
+     */
     @Override
     public void display() {
         // Print instructions, HUD, etc
@@ -12,8 +32,8 @@ public class HeadUpDisplayView implements Viewable {
     }
 
     /**
-     * Receives updates from Model through Controller
-     * @param input a string representing the update
+     * Receives updates from Controller to update the HUD.
+     * @param input a string representing the update.
      */
     @Override
     public void inputFromController(String input) {
@@ -22,7 +42,7 @@ public class HeadUpDisplayView implements Viewable {
 
     /**
      * Returns the instructions on how to play.
-     * @return a String representing the instructions of how to play the game
+     * @return a String representing the instructions of how to play the game.
      */
     private String Instructions() {
         return "\u001B[36mInstructions:\n" +

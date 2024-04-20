@@ -1,15 +1,22 @@
 package com.faycalkilali.fruitcollectorapp.model;
 
 /**
- * Representation of a Barbie Person Toy
+ * Representation of a Barbie Person.
  * @author Faycal Kilali
  * @version 1.0
  */
 public class Barbie extends Person{
 
     /**
-     * Communicates Barbie in textual form
-     * @return textual representation of Barbie
+     * Constructor for the class.
+     */
+    public Barbie(){
+        this.health = 100;
+    }
+
+    /**
+     * Exhibits the textual form of the object.
+     * @return textual representation of the object.
      */
     @Override
     public String toString(){

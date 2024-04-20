@@ -8,8 +8,8 @@ package com.faycalkilali.fruitcollectorapp.model;
 public class Wall implements Entity {
 
     /**
-     * Communicates Wall in textual form
-     * @return textual representation of Wall
+     * Exhibits the textual form of the object.
+     * @return textual representation of the object.
      */
     public String toString(){
         return "\u001B[33mW\u001B[0m";

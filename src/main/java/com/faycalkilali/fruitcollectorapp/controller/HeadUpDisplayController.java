@@ -3,7 +3,12 @@ package com.faycalkilali.fruitcollectorapp.controller;
 import com.faycalkilali.fruitcollectorapp.model.IGrid;
 import com.faycalkilali.fruitcollectorapp.view.HeadUpDisplayView;
 import com.faycalkilali.fruitcollectorapp.view.Viewable;
-
+/**
+ * Controller for managing the grid HUD component in the MVC architecture.
+ *
+ * @author Faycal Kilali
+ * @version 1.1
+ */
 public class HeadUpDisplayController implements IHeadUpDisplayController {
 
     private IGrid grid;
@@ -23,7 +28,6 @@ public class HeadUpDisplayController implements IHeadUpDisplayController {
         int barbieHealth = grid.getBarbieHealth();
         int fruits = grid.getNumberOfFruits();
 
-        //return "HP: " + barbieHealth + "\n" + "Fruits remaining: " + fruits;
         headsUpDisplayView.inputFromController("\u001B[32mHP: " + barbieHealth + "\nFruits remaining: " + fruits + "\u001B[0m"); // ANSI-version
     }
 
@@ -38,7 +42,7 @@ public class HeadUpDisplayController implements IHeadUpDisplayController {
 
     /**
      * Sets the grid.
-     * @param grid the grid to set to
+     * @param grid the grid to set to.
      */
     public void setGrid(IGrid grid) {
         this.grid = grid;

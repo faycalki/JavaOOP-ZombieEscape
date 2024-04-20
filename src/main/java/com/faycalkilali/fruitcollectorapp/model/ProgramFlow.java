@@ -4,10 +4,10 @@ package com.faycalkilali.fruitcollectorapp.model;
 /**
  * The first model object to be created in the MVC-Architecture. Entry-point for the creation of the rest of the Model.
  * Performs logical manipulation or requisition of the data when commanded to by the Controller.
+ *
  * @author Faycal Kilali
  * @version 1.1
  */
-
 
 public class ProgramFlow implements IProgramFlow {
 
@@ -16,22 +16,25 @@ public class ProgramFlow implements IProgramFlow {
     private boolean gameWon;
 
     private static final int GAME_OVER_HEALTH = 0;
-    private static final int DAMAGE_FROM_ZOMBIE = -5;
+    private static final int DAMAGE_FROM_ZOMBIE = 5;
     private static final int FRUIT_HEALTH_GAIN = 10;
     private static final double CHANCE_OF_ZOMBIE_NOT_MOVING = 0.25;
+    private static int highScore = 0;
+    private int score = 0;
 
 
-
-    public ProgramFlow(){
+    /**
+     * Constructor for the program flow.
+     */
+    public ProgramFlow() {
         grid = new Grid();
         this.gameInProgress = false;
         this.gameWon = false;
     }
 
 
-
     /**
-     * Updates state of Zombies
+     * Updates state of Zombies.
      */
     @Override
     public void update() {
@@ -52,9 +55,11 @@ public class ProgramFlow implements IProgramFlow {
                 if (grid.getGrid()[row][column] instanceof Zombie && isBarbieAdjacent(row, column)) {
                     Barbie barbie = grid.getBarbie();
                     barbie.setHealth(barbie.getHealth() - DAMAGE_FROM_ZOMBIE);
-                    if (barbie.getHealth() <= GAME_OVER_HEALTH){
+                    if (barbie.getHealth() <= GAME_OVER_HEALTH) {
                         swapGameInProgress();
                         gameWon = false;
+                        score = 0;
+                        barbie.resetToDefault();
                     }
                 }
             }
@@ -63,10 +68,11 @@ public class ProgramFlow implements IProgramFlow {
 
 
     /**
-     * Checks if Barbie is adjacent to adjacent to a zombie helper method
-     * @param zombieRow row of zombie
-     * @param zombieColumn column of zombie
-     * @return true if she is adjacent to a zombie, false otherwise
+     * Checks if Barbie is adjacent to a zombie.
+     *
+     * @param zombieRow    row of zombie.
+     * @param zombieColumn column of zombie.
+     * @return true if she is adjacent to a zombie, false otherwise.
      */
     private boolean isBarbieAdjacent(int zombieRow, int zombieColumn) {
         // We'll check each adjacent cell
@@ -78,7 +84,7 @@ public class ProgramFlow implements IProgramFlow {
                 // Ensure the adjacent cell is within the grid boundaries
                 if (isValidCell(adjacentRow, adjacentCol)) {
                     // Check if Barbie is in the adjacent cell
-                    if (grid.getGrid()[adjacentRow][adjacentCol] instanceof Barbie) {
+                    if (grid.getBarbieRow() == adjacentRow && grid.getBarbieColumn() == adjacentCol) {
                         return true;
                     }
                 }
@@ -88,23 +94,36 @@ public class ProgramFlow implements IProgramFlow {
     }
 
     /**
-     * Checks if a cell is valid for movement towards
-     * @param row of cell
-     * @param column of cell
-     * @return true if it is valid to move to cell, false otherwise
+     * Checks if a cell is not outside grid boundaries.
+     *
+     * @param row    of cell.
+     * @param column of cell.
+     * @return true if it is valid to move to cell, false otherwise.
      */
     private boolean isValidCell(int row, int column) {
         if (row < 0 || row >= grid.getNumberOfRows() || column < 0 || column >= grid.getNumberOfColumns()) {
             return false; // Outside the grid boundaries
         }
-
-        // Don't overwrite any of those instances (can't walk into them)
-        return (!(grid.getGrid()[row][column] instanceof Wall));
-
+        return true;
     }
 
     /**
-     * Enforces a random chance of a zombie moving
+     * Checks if a cell is valid for movement towards.
+     *
+     * @param row    of cell.
+     * @param column of cell.
+     * @return true if it is valid to move to cell, false otherwise.
+     */
+    private boolean isValidMove(int row, int column) {
+        // Don't overwrite any of those instances (can't walk into them)
+        return !(grid.getGrid()[row][column] instanceof Person) &&
+                !(grid.getGrid()[row][column] instanceof Wall) &&
+                !(grid.getGrid()[row][column] instanceof Zombie);
+    }
+
+
+    /**
+     * Enforces a random chance of a zombie moving.
      */
     private void moveZombiesRandomly() {
         for (int row = 0; row < grid.getNumberOfRows(); row++) {
@@ -113,8 +132,7 @@ public class ProgramFlow implements IProgramFlow {
                     // Randomly determine whether to move the zombie
                     double moveProbability = Math.random();
 
-                    // Check if it's valid to move the zombie (not a wall or outside the grid)
-                    if (moveProbability > CHANCE_OF_ZOMBIE_NOT_MOVING && isValidZombieMove(row, column)) { // 75% chance of movement
+                    if (moveProbability > CHANCE_OF_ZOMBIE_NOT_MOVING) { // 75% chance of movement
 
                         // Move the zombie
                         moveZombie(row, column);
@@ -125,20 +143,23 @@ public class ProgramFlow implements IProgramFlow {
     }
 
     /**
-     * Checks whether the move of the Zombie is valid or not
-     * @param row to move to
-     * @param column to move to
-     * @return true if valid cell to move to, false otherwise
+     * Checks whether the move of the Zombie is valid or not.
+     *
+     * @param row    to move to.
+     * @param column to move to.
+     * @return true if valid cell to move to, false otherwise.
      */
     private boolean isValidZombieMove(int row, int column) {
-        // Check if the move is valid, and also prevent zombies from walking through fruits
-        return (isValidCell(row, column)) && !(grid.getGrid()[row][column] instanceof Fruit) && !(grid.getGrid()[row][column] instanceof Barbie);
+        // Check if the move is valid, and also prevent zombies from walking through fruits, barbies, walls, and other zombies.
+        return isValidCell(row, column) && isValidMove(row, column) &&
+                !(grid.getGrid()[row][column] instanceof Fruit);
     }
 
     /**
-     * Moves the zombie
-     * @param zombieRow to move to
-     * @param zombieColumn to move to
+     * Moves the zombie.
+     *
+     * @param zombieRow    to move to.
+     * @param zombieColumn to move to.
      */
     private void moveZombie(int zombieRow, int zombieColumn) {
         // Get the direction towards Barbie, smart way of doing so
@@ -151,22 +172,17 @@ public class ProgramFlow implements IProgramFlow {
 
         // Ensure there's no obstacle and perform the move
         if (isValidZombieMove(newRow, newColumn)) {
-            if (grid.getGrid()[newRow][newColumn] instanceof Zombie){
-                // Don't move the zombie
-            }
-
-            else {
-                grid.getGrid()[newRow][newColumn] = grid.getGrid()[zombieRow][zombieColumn];
-                grid.getGrid()[zombieRow][zombieColumn] = null;
-            }
+            grid.getGrid()[newRow][newColumn] = grid.getGrid()[zombieRow][zombieColumn];
+            grid.getGrid()[zombieRow][zombieColumn] = null;
         }
         // If the move is not valid, don't move the zombie.
     }
 
 
     /**
-     * Moves Barbie to a particular direction
-     * @param direction to move to
+     * Moves Barbie to a particular direction.
+     *
+     * @param direction to move to.
      */
     @Override
     public void moveBarbie(String direction) {
@@ -205,13 +221,15 @@ public class ProgramFlow implements IProgramFlow {
 
 
             // Check if fruit exists
-            if (grid.getGrid()[grid.getBarbieRow()][grid.getBarbieColumn()] instanceof Fruit){
+            if (grid.getGrid()[grid.getBarbieRow()][grid.getBarbieColumn()] instanceof Fruit) {
                 grid.setNumberOfFruits(grid.getNumberOfFruits() - 1);
                 Barbie barbie = grid.getBarbie();
                 barbie.setHealth(barbie.getHealth() + FRUIT_HEALTH_GAIN);
-                if (getFruits() == 0){
+                if (getFruits() == 0) {
                     swapGameInProgress();
                     gameWon = true;
+                    score++;
+                    updateHighScore();
                 }
             }
 
@@ -221,35 +239,37 @@ public class ProgramFlow implements IProgramFlow {
             // Clear old position
             grid.getGrid()[currentRow][currentColumn] = null;
 
-        }
-
-        else {
+        } else {
             // If the move is not valid, revert Barbie's position to the old one
             grid.setBarbieRow(currentRow);
             grid.setBarbieColumn(currentColumn);
         }
+        update(); // Updates state of all other entities
     }
 
     /**
-     * Helper method to ensure that the new position is not invalid
-     * @return true if valid, false otherwise
+     * Helper method to ensure that the new position is not invalid.
+     *
+     * @return true if valid, false otherwise.
      */
     private boolean isValidBarbieMove() {
-        return isValidCell(grid.getBarbieRow(), grid.getBarbieColumn()) && !(grid.getGrid()[grid.getBarbieRow()][grid.getBarbieColumn()] instanceof Zombie);
+        return isValidCell(grid.getBarbieRow(), grid.getBarbieColumn()) && isValidMove(grid.getBarbieRow(), grid.getBarbieColumn());
     }
 
     /**
-     * Accessor method for number of fruits
-     * @return number of fruits
+     * Accessor method for number of fruits.
+     *
+     * @return number of fruits.
      */
     @Override
-    public int getFruits(){
+    public int getFruits() {
         return grid.getNumberOfFruits();
     }
 
     /**
      * Return the grid.
-     * @return the grid object
+     *
+     * @return the grid object.
      */
     @Override
     public IGrid getGrid() {
@@ -258,39 +278,78 @@ public class ProgramFlow implements IProgramFlow {
 
     /**
      * Accessor for gameInProgress variable.
-     * @return true if game is still in progress, false otherwise
+     *
+     * @return true if game is still in progress, false otherwise.
      */
     @Override
-    public boolean getGameInProgress(){
+    public boolean getGameInProgress() {
         return gameInProgress;
     }
 
     /**
-     * Swapper of state (mutator) of gameStarted variable.
+     * Swaps state of gameInProgress.
      */
     @Override
-    public void swapGameInProgress(){
+    public void swapGameInProgress() {
         gameInProgress = !gameInProgress;
     }
 
+    /**
+     * Retrieves the current status indicating whether the game has been won.
+     *
+     * @return {@code true} if this particular game has been won; {@code false} otherwise.
+     */
     @Override
-    public boolean isGameWon(){
+    public boolean isGameWon() {
         return gameWon;
     }
 
+    /**
+     * Swaps state of gameWon.
+     */
     @Override
-    public void swapGameWon(){
+    public void swapGameWon() {
         gameWon = !gameWon;
     }
-
 
     /**
      * Resets state of game.
      */
     @Override
-    public void resetGame(){
-
+    public void resetGame() {
+        grid.initializeGrid();
     }
+
+    /**
+     * Updates the high score if the current score is higher.
+     */
+    private void updateHighScore() {
+        if (score > highScore) {
+            highScore = score;
+        }
+    }
+
+    /**
+     * Retrieves the high score variable.
+     *
+     * @return The current high score.
+     */
+    @Override
+    public int getHighScore() {
+        return highScore;
+    }
+
+
+    /**
+     * Accessor for score.
+     *
+     * @return score.
+     */
+    @Override
+    public int getScore() {
+        return score;
+    }
+
 
 }
 

@@ -1,5 +1,3 @@
-
-
 package com.faycalkilali.fruitcollectorapp.controller;
 
 import com.faycalkilali.fruitcollectorapp.model.IProgramFlow;
@@ -14,7 +12,7 @@ import com.faycalkilali.fruitcollectorapp.view.ProgramView;
  *
  * @author Faycal Kilali
  * @version 1.1
- * @implSpec Implemented using MVC Architecture
+ * @implNote Implemented using MVC Architecture.
  */
 
 public class ProgramController implements IProgramController {
@@ -74,24 +72,30 @@ public class ProgramController implements IProgramController {
 
         while (programFlow.getGameInProgress()) {
 
-            // Check if game is over (all fruits consumed)
-            if (programFlow.isGameWon()) {
-                view.winScreen();
-            }
-
-            // Check if game is over (health is less than or equal to 0)
-            if (!programFlow.getGameInProgress() && !programFlow.isGameWon()) {
-                view.lostScreen();
-            }
-
-            // Entities state update
-            programFlow.update();
-
             // Handle user input
             handleInput();
 
             // Render the Composite View
             requestFullDisplay();
+
+
+            // Check if game is over (all fruits consumed)
+            if (programFlow.isGameWon()) {
+                int score = programFlow.getScore();
+                int highScore = programFlow.getHighScore();
+                String formattedScores = String.format("Score: %d\nHigh Score: %d\n", score, highScore);
+                view.inputFromController(formattedScores);
+                view.winScreen();
+            }
+
+            // Check if game is over (health is less than or equal to 0)
+            if (!programFlow.getGameInProgress() && !programFlow.isGameWon()) {
+                int score = programFlow.getScore();
+                int highScore = programFlow.getHighScore();
+                String formattedScores = String.format("Score: %d\nHigh Score: %d\n", score, highScore);
+                view.inputFromController(formattedScores);
+                view.lostScreen();
+            }
         }
 
         // Reset game if over (for now, we'll just reinitialize the model)
@@ -130,7 +134,6 @@ public class ProgramController implements IProgramController {
                 programFlow.swapGameInProgress();
                 break;
             default:
-                System.out.println("Unexpected user input: " + move + "\n" + "Try again!");
                 handleInput();
         }
     }
@@ -150,5 +153,6 @@ public class ProgramController implements IProgramController {
     private void resetGame() {
         programFlow.resetGame();
     }
+
 
 }

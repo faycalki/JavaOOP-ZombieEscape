@@ -10,8 +10,8 @@ public class Zombie implements Entity{
 
 
     /**
-     * Communicates Zombie in textual form
-     * @return textual representation of Zombie
+     * Exhibits the textual form of the object.
+     * @return textual representation of the object.
      */
     public String toString(){
         return "\u001B[31mZ\u001B[0m";

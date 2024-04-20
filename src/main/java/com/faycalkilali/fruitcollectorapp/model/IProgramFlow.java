@@ -19,4 +19,8 @@ public interface IProgramFlow {
     void swapGameWon();
 
     void resetGame();
+
+    int getHighScore();
+
+    int getScore();
 }

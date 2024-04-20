@@ -3,11 +3,31 @@ package com.faycalkilali.fruitcollectorapp.view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Represents an input view for receiving user input in the game.
+ * <p>
+ *      This class implements the {@link Inputable}, hence it contains the exact behaviour of the interface.
+ * </p>
+ * <p>
+ *     This class implements the {@link Viewable} interface, therefore that exact behaviour is also part of this class.
+ * </p>
+ * <p>
+ * Any object of this class contains a {@code Scanner} object to facilitate input operations from stdio.
+ * </p>
+ * <p>
+ * @implNote: This class is useful for providing decoupling of user input from other views.
+ * </p>
+ *
+ * @author Faycal Kilali
+ * @version 1.0
+ */
 public class InputView implements Inputable{
     private String contents = "";
     private final Scanner scanner;
 
-
+    /**
+     * Creates a {@code InputView} object with a {@code Scanner} object that uses the stdio stream.
+     */
     public InputView(){
         this.scanner = new Scanner(System.in);
     }
