@@ -37,7 +37,7 @@ Contributions are welcome! If you have any suggestions, feature requests, or bug
 
 ## License
 
-This project is licensed under the [GNU General Public License v3.0](LICENSE).
+This project is licensed under the [GNU General Public License v3.0](LICENSE/LICENSE).
 
 ## About the Author
 
