@@ -1,8 +1,23 @@
 # FruitFrenzy: Escape from the Undead
 
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
+  <circle cx="50" cy="50" r="40" fill="#FF5733"/>
+  <text x="28" y="62" font-family="Arial" font-size="45" fill="#FFFFFF">FF</text>
+</svg>
+
+
 ## Description
 
 FruitFrenzy: Escape from the Undead is a Java-based game meticulously crafted to embody advanced object-oriented programming (OOP) principles, showcasing a robust Model-View-Controller (MVC) architecture. Players delve into dynamically generated terrains teeming with a plethora of interactive elements, including fruits, menacing zombies, and formidable barriers. Their mission? To masterfully navigate the perilous landscapes, strategically collecting fruits while deftly evading the relentless pursuit of undead adversaries. Boasting seamless integration of various design patterns, coupled with ANSI code for visually striking graphics, this game offers a captivating immersive experience.
+
+## UML Class Diagram
+
+![UML](UML/ClassDiagram.svg)
+
+## Gameplay
+
+![Gameplay](img/gameplay.png)
+![Gameplay](img/gameplay2.png)
 
 ## Features
 
