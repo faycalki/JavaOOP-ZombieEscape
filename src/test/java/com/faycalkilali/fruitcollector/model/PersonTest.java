@@ -20,7 +20,7 @@ class PersonTest {
 
     @BeforeEach
     void setUp() {
-        person = new Barbie();
+        person = new Scout();
     }
 
     @Test

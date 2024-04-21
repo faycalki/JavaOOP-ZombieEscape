@@ -15,6 +15,8 @@ import com.faycalkilali.fruitcollector.view.InputView;
 import com.faycalkilali.fruitcollector.view.Inputable;
 import com.faycalkilali.fruitcollector.view.ProgramView;
 
+import java.util.InputMismatchException;
+
 /**
  * Controller for the CompositeView of the program and the program flow in general.
  *
@@ -65,13 +67,11 @@ public class ProgramController implements IProgramController {
 
         while (!programFlow.getGameInProgress()) {
             view.welcomeMessage();
-            int curValue = input.inputInt();
-            if (curValue == START_GAME) {
-                if (programFlow.isGameWon()) {
-                    programFlow.swapGameWon();
-                }
-                programFlow.swapGameInProgress();
-            }
+                String curValue = input.inputString();
+                    if (programFlow.isGameWon()) {
+                        programFlow.swapGameWon();
+                    }
+                    programFlow.swapGameInProgress();
         }
 
         // Render the Composite View
@@ -122,19 +122,19 @@ public class ProgramController implements IProgramController {
 
         switch (move) {
             case "w":
-                // move barbie up
+                // move scout up
                 programFlow.moveBarbie("up");
                 break;
             case "a":
-                // move barbie left
+                // move scout left
                 programFlow.moveBarbie("left");
                 break;
             case "s":
-                // move barbie down
+                // move scout down
                 programFlow.moveBarbie("down");
                 break;
             case "d":
-                // move barbie right
+                // move scout right
                 programFlow.moveBarbie("right");
                 break;
             case "quit":

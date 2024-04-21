@@ -23,6 +23,6 @@ public class Zombie implements Entity {
      * @return textual representation of the object.
      */
     public String toString() {
-        return "\u001B[31mZ\u001B[0m";
+        return "\u001B[31m\uD83E\uDDDF\u001B[0m";
     }
 }

@@ -57,7 +57,7 @@ public class HeadUpDisplayView implements Viewable {
      */
     private String Instructions() {
         return "\u001B[36mInstructions:\n" +
-                "Use \u001B[33mW\u001B[36m, \u001B[33mA\u001B[36m, \u001B[33mS\u001B[36m, \u001B[33mD\u001B[36m keys to move Barbie.\n" +
+                "Use \u001B[33mW\u001B[36m, \u001B[33mA\u001B[36m, \u001B[33mS\u001B[36m, \u001B[33mD\u001B[36m keys to move Scout.\n" +
                 "\u001B[0m";
     }
 

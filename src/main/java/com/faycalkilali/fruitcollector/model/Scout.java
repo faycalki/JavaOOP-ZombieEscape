@@ -9,17 +9,17 @@
 package com.faycalkilali.fruitcollector.model;
 
 /**
- * Representation of a Barbie Person.
+ * Representation of a Scout Person.
  *
  * @author Faycal Kilali
  * @version 1.0
  */
-public class Barbie extends Person {
+public class Scout extends Person {
 
     /**
      * Constructor for the class.
      */
-    public Barbie() {
+    public Scout() {
         this.health = 100;
     }
 
@@ -30,6 +30,6 @@ public class Barbie extends Person {
      */
     @Override
     public String toString() {
-        return "\u001B[35mB\u001B[0m";
+        return "\uD83D\uDC68\u200D\uD83D\uDE80\u001B[0m"; // Astronaut (Man)
     }
 }

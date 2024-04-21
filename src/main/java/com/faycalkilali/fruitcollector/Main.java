@@ -21,7 +21,7 @@ import com.faycalkilali.fruitcollector.controller.IProgramController;
 import com.faycalkilali.fruitcollector.controller.ProgramController;
 
 /**
- * Entry-point for the program of Barbie VS Zombies.
+ * Entry-point for the program of Scout VS Zombies.
  * @author Faycal Kilali
  * @version 1.1
  */

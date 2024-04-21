@@ -22,6 +22,6 @@ public class Wall implements Entity {
      * @return textual representation of the object.
      */
     public String toString() {
-        return "\u001B[33mW\u001B[0m";
+        return "\u001B[33m\uD83D\uDDFB\u001B[0m";
     }
 }

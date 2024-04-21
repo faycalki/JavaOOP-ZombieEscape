@@ -31,6 +31,14 @@ Master the art of survival with intuitive controls:
 - Use arrow keys or WASD to control the player character.
 - Navigate the terrain, collect fruits, and avoid zombies to survive.
 
+## To do
+
+The following additional improvements can be made
+- Removal of all instanceOf calls. This may involve the utilization of the Visitor Design Pattern
+- Removal of all casting
+- Removal of toString methods in the Entity interface and implementing classes. Doing so will appropriately adhere to the MVC Structure.
+- Removal of all switch statements
+
 ## Contributing
 
 Contributions are welcome! If you have any suggestions, feature requests, or bug fixes, please open an issue or submit a pull request.

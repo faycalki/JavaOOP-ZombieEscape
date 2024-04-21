@@ -35,7 +35,7 @@ class GridTest {
         assertTrue(numberOfRows >= 6 && numberOfRows <= 15);
         assertTrue(numberOfColumns >= 6 && numberOfColumns <= 15);
 
-        // Lets make sure Barbie is on the grid
+        // Lets make sure Scout is on the grid
         assertNotNull(grid.getBarbie());
         assertEquals(100, grid.getBarbieHealth());
 

@@ -9,6 +9,8 @@
 package com.faycalkilali.fruitcollector.model;
 
 
+import java.util.Random;
+
 /**
  * The first model object to be created in the MVC-Architecture. Entry-point for the creation of the rest of the Model.
  * Performs logical manipulation or requisition of the data when commanded to by the Controller.
@@ -44,7 +46,7 @@ public class ProgramFlow implements IProgramFlow {
      * Updates state of Zombies.
      */
     private void update() {
-        // Is Barbie next to some zombie? If she is, lose 5 health per adjacent zombie tile
+        // Is Scout next to some zombie? If she is, lose 5 health per adjacent zombie tile
         checkBarbieAdjacentToZombie();
 
         // Move zombies randomly
@@ -52,20 +54,20 @@ public class ProgramFlow implements IProgramFlow {
     }
 
     /**
-     * Checks if Barbie is adjacent to any zombies and reduces her health by 5 per zombie that's adjacent.
+     * Checks if Scout is adjacent to any zombies and reduces her health by 5 per zombie that's adjacent.
      */
     private void checkBarbieAdjacentToZombie() {
         for (int row = 0; row < grid.getNumberOfRows(); row++) {
             for (int column = 0; column < grid.getNumberOfColumns(); column++) {
-                // Check if Barbie is adjacent to the zombie
+                // Check if Scout is adjacent to the zombie
                 if (grid.getGrid()[row][column] instanceof Zombie && isBarbieAdjacent(row, column)) {
-                    Barbie barbie = grid.getBarbie();
-                    barbie.setHealth(barbie.getHealth() - DAMAGE_FROM_ZOMBIE);
-                    if (barbie.getHealth() <= GAME_OVER_HEALTH) {
+                    Scout scout = grid.getBarbie();
+                    scout.setHealth(scout.getHealth() - DAMAGE_FROM_ZOMBIE);
+                    if (scout.getHealth() <= GAME_OVER_HEALTH) {
                         swapGameInProgress();
                         gameWon = false;
                         score = 0;
-                        barbie.resetToDefault();
+                        scout.resetToDefault();
                     }
                 }
             }
@@ -74,7 +76,7 @@ public class ProgramFlow implements IProgramFlow {
 
 
     /**
-     * Checks if Barbie is adjacent to a zombie.
+     * Checks if Scout is adjacent to a zombie.
      *
      * @param zombieRow    row of zombie.
      * @param zombieColumn column of zombie.
@@ -89,7 +91,7 @@ public class ProgramFlow implements IProgramFlow {
 
                 // Ensure the adjacent cell is within the grid boundaries
                 if (isValidCell(adjacentRow, adjacentCol)) {
-                    // Check if Barbie is in the adjacent cell
+                    // Check if Scout is in the adjacent cell
                     if (grid.getBarbieRow() == adjacentRow && grid.getBarbieColumn() == adjacentCol) {
                         return true;
                     }
@@ -165,7 +167,7 @@ public class ProgramFlow implements IProgramFlow {
      * @param zombieColumn to move to.
      */
     private void moveZombie(int zombieRow, int zombieColumn) {
-        // Get the direction towards Barbie, smart way of doing so
+        // Get the direction towards Scout, smart way of doing so
         int rowDirection = Integer.compare(grid.getBarbieRow(), zombieRow);
         int colDirection = Integer.compare(grid.getBarbieColumn(), zombieColumn);
 
@@ -183,17 +185,17 @@ public class ProgramFlow implements IProgramFlow {
 
 
     /**
-     * Moves Barbie to a particular direction.
+     * Moves Scout to a particular direction.
      *
      * @param direction to move to.
      */
     @Override
     public void moveBarbie(String direction) {
-        // Keeping a copy of the current position of Barbie
+        // Keeping a copy of the current position of Scout
         int currentRow = grid.getBarbieRow();
         int currentColumn = grid.getBarbieColumn();
 
-        // We'll update Barbie's position based on direction
+        // We'll update Scout's position based on direction
         switch (direction) {
             case "up":
                 if (grid.getBarbieRow() > 0) {
@@ -226,8 +228,8 @@ public class ProgramFlow implements IProgramFlow {
             // Check if fruit exists
             if (grid.getGrid()[grid.getBarbieRow()][grid.getBarbieColumn()] instanceof Fruit) {
                 grid.setNumberOfFruits(grid.getNumberOfFruits() - 1);
-                Barbie barbie = grid.getBarbie();
-                barbie.setHealth(barbie.getHealth() + FRUIT_HEALTH_GAIN);
+                Scout scout = grid.getBarbie();
+                scout.setHealth(scout.getHealth() + FRUIT_HEALTH_GAIN);
                 if (getFruits() == 0) {
                     swapGameInProgress();
                     gameWon = true;
@@ -236,14 +238,14 @@ public class ProgramFlow implements IProgramFlow {
                 }
             }
 
-            // Place Barbie in the new position
+            // Place Scout in the new position
             grid.getGrid()[grid.getBarbieRow()][grid.getBarbieColumn()] = grid.getGrid()[currentRow][currentColumn];
 
             // Clear old position
             grid.getGrid()[currentRow][currentColumn] = null;
 
         } else {
-            // If the move is not valid, revert Barbie's position to the old one
+            // If the move is not valid, revert Scout's position to the old one
             grid.setBarbieRow(currentRow);
             grid.setBarbieColumn(currentColumn);
         }
@@ -319,6 +321,9 @@ public class ProgramFlow implements IProgramFlow {
      */
     @Override
     public void resetGame() {
+        Random rand = new Random();
+        int environment = rand.nextInt(0,10);
+        grid.setTerrainOptions(environment);
         grid.initializeGrid();
     }
 

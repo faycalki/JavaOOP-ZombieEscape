@@ -17,13 +17,13 @@ class BarbieTest {
 
     @Test
     void testBarbieHealthInitializedCorrectly() {
-        Barbie barbie = new Barbie();
-        assertEquals(100, barbie.getHealth());
+        Scout scout = new Scout();
+        assertEquals(100, scout.getHealth());
     }
 
     @Test
     void testToString() {
-        Barbie barbie = new Barbie();
-        assertEquals("\u001B[35mB\u001B[0m", barbie.toString()); // may have to do a better test
+        Scout scout = new Scout();
+        assertEquals("\u001B[35mB\u001B[0m", scout.toString()); // may have to do a better test
     }
 }

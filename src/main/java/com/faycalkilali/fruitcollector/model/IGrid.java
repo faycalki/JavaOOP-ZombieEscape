@@ -33,9 +33,13 @@ public interface IGrid {
 
     int getBarbieHealth();
 
-    Barbie getBarbie();
+    Scout getBarbie();
 
     int getNumberOfZombies();
 
     int getNumberOfWalls();
+
+    void setTerrainOptions(int inInt);
+
+    int getCurrentTerrain();
 }

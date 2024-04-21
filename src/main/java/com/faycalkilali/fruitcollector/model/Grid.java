@@ -29,7 +29,7 @@ import java.util.Random;
  */
 public class Grid implements IGrid {
     private final Random rand = new Random();
-    private final Barbie barbie;
+    private final Scout scout;
     private Entity[][] grid;
     private int numberOfFruits;
     private int numberOfRows;
@@ -38,10 +38,22 @@ public class Grid implements IGrid {
     private int numberOfWalls;
     private int barbieRow;
     private int barbieColumn;
+    private int[] terrainOptions;
+    private int currentTerrain;
+
 
     public Grid() {
-        barbie = new Barbie();
+        scout = new Scout();
         initializeGrid();
+
+        terrainOptions = new int[10]; // number of environments
+        for (int i = 0; i < terrainOptions.length; i++){
+            terrainOptions[i] = i;
+        }
+
+        int environment = rand.nextInt(0,10);
+        currentTerrain = environment;
+
     }
 
     /**
@@ -76,7 +88,7 @@ public class Grid implements IGrid {
         int countWalls = 0;
         double wallProbability = (0.4 * 10) / (numberOfColumns * numberOfRows);
 
-        // Initializing barbie probability
+        // Initializing scout probability
         double barbieProbability = (0.1 * 10) / (numberOfColumns * numberOfRows);
 
         // Flag to check if object has been placed
@@ -91,9 +103,9 @@ public class Grid implements IGrid {
                     double randomValue = rand.nextDouble();
 
 
-                    // Place Barbie
+                    // Place Scout
                     if (!barbiePlaced && randomValue <= barbieProbability && (grid[row][column] == null)) {
-                        grid[row][column] = barbie;
+                        grid[row][column] = scout;
                         barbiePlaced = true;
                         barbieRow = row;
                         barbieColumn = column;
@@ -123,14 +135,14 @@ public class Grid implements IGrid {
         }
 
 
-        // If barbie, a wall, a zombie, or a fruit have not been placed...
+        // If scout, a wall, a zombie, or a fruit have not been placed...
         if (!barbiePlaced || !wallPlaced || !zombiePlaced || !fruitPlaced) {
             for (int row = 0; row < numberOfRows; row++) {
                 for (int column = 0; column < numberOfColumns; column++) {
                     if (grid[row][column] == null) {
 
                         if (!barbiePlaced) {
-                            grid[row][column] = barbie;
+                            grid[row][column] = scout;
                             barbieRow = row;
                             barbieColumn = column;
                             barbiePlaced = true;
@@ -157,10 +169,10 @@ public class Grid implements IGrid {
         numberOfWalls = countWalls;
         numberOfFruits = countFruits;
 
-        // Extra-check Barbie is placed
+        // Extra-check Scout is placed
 
         if (grid[barbieRow][barbieColumn] == null) {
-            grid[barbieRow][barbieColumn] = barbie;
+            grid[barbieRow][barbieColumn] = scout;
         }
     }
 
@@ -175,9 +187,9 @@ public class Grid implements IGrid {
     }
 
     /**
-     * Accessor for retrieving the column index of Barbie's current position on the grid.
+     * Accessor for retrieving the column index of Scout's current position on the grid.
      *
-     * @return The column index of Barbie's position.
+     * @return The column index of Scout's position.
      */
     @Override
     public int getBarbieColumn() {
@@ -185,7 +197,7 @@ public class Grid implements IGrid {
     }
 
     /**
-     * Mutator for setting the column index of Barbie's position on the grid.
+     * Mutator for setting the column index of Scout's position on the grid.
      *
      * @param barbieColumn The column index to set.
      */
@@ -195,9 +207,9 @@ public class Grid implements IGrid {
     }
 
     /**
-     * Accessor for retrieving the row index of Barbie's current position on the grid.
+     * Accessor for retrieving the row index of Scout's current position on the grid.
      *
-     * @return The row index of Barbie's position.
+     * @return The row index of Scout's position.
      */
     @Override
     public int getBarbieRow() {
@@ -205,7 +217,7 @@ public class Grid implements IGrid {
     }
 
     /**
-     * Mutator for setting the row index of Barbie's position on the grid.
+     * Mutator for setting the row index of Scout's position on the grid.
      *
      * @param barbieRow The row index to set.
      */
@@ -255,23 +267,23 @@ public class Grid implements IGrid {
     }
 
     /**
-     * Accessor for retrieving the current health of Barbie.
+     * Accessor for retrieving the current health of Scout.
      *
-     * @return The current health of Barbie.
+     * @return The current health of Scout.
      */
     @Override
     public int getBarbieHealth() {
-        return barbie.getHealth();
+        return scout.getHealth();
     }
 
     /**
-     * Accessor for retrieving the Barbie object.
+     * Accessor for retrieving the Scout object.
      *
-     * @return The Barbie object.
+     * @return The Scout object.
      */
     @Override
-    public Barbie getBarbie() {
-        return barbie;
+    public Scout getBarbie() {
+        return scout;
     }
 
     /**
@@ -290,6 +302,26 @@ public class Grid implements IGrid {
     @Override
     public int getNumberOfZombies() {
         return numberOfZombies;
+    }
+
+    /**
+     * Sets the current terrain for the grid.
+     * @implNote In the future, different environments should be able to change the gameplay.
+     *
+     * @param inInt the new value for the terrain.
+     */
+    @Override
+    public void setTerrainOptions(int inInt) {
+        this.currentTerrain = inInt;
+    }
+
+    /**
+     * Gets the current terrain.
+     * @return the current terrain.
+     */
+    @Override
+    public int getCurrentTerrain() {
+        return currentTerrain;
     }
 
 
